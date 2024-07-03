@@ -6,11 +6,13 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/data/api/apiconstant.dart';
 import 'package:e_commerce_app/data/model/request/LoginRequest.dart';
 import 'package:e_commerce_app/data/model/request/RegisterRequest.dart';
+import 'package:e_commerce_app/data/model/response/AddCartResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/CategoryOrBrandResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/LoginResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/ProductResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/RegisterResponseDto.dart';
 import 'package:e_commerce_app/domain/entities/failures.dart';
+import 'package:e_commerce_app/ui/utils/shared_preference_utils.dart';
 import 'package:http/http.dart' as http;
 class ApiManger{
   ApiManger._();
@@ -136,6 +138,36 @@ Future <Either<Failures,ProductResponseDto>>getProducts
       productResponse.message
       ,
     ));
+  }
+
+
+}
+
+Future <Either<Failures,AddCartResponseDto>>addToCart( String productId)async
+{
+  Uri url =Uri.https(ApiConstant.baseUrl,ApiEndPoint.addToCartEndPoint);
+  var token =SharedPreferenceUtils.getData(key: 'Token');
+  var response=await http.post(url,
+      body:{'productId' :productId},
+    headers: {
+    'token' :token!.toString()
+    }
+  );
+  var addCartResponse=AddCartResponseDto.fromJson(jsonDecode(response.body));
+  if (response.statusCode>=200&& response.statusCode<300){
+    return Right(addCartResponse);
+  }else if(response.statusCode==401){
+    return Left(ServerError(errorMessage: addCartResponse.message));
+  }
+  else
+  {
+    return Left(ServerError(
+      errorMessage:
+
+      addCartResponse.message
+      ,
+    )
+    );
   }
 
 

@@ -7,6 +7,7 @@ import 'package:e_commerce_app/domain/repository/data_source/auth_remote_data_so
 import 'package:e_commerce_app/domain/repository/data_source/home_tab_remote_dataSource.dart';
 import 'package:e_commerce_app/domain/repository/repository/auth_repo.dart';
 import 'package:e_commerce_app/domain/repository/repository/home_tab_repository.dart';
+import 'package:e_commerce_app/domain/use_case/Add_cart_use_use_Case.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_Brands_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_categories_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_product_use_case.dart';
@@ -28,7 +29,10 @@ GetAllBrandsUseCase injectGetAllBrandsUseCase (){
 GetAllProductsUseCase injectGetAllProductsUseCase(){
   return GetAllProductsUseCase(homeTabRepository: injectHomeTabRepository());
 }
-HomeTabRepository injectHomeTabRepository(){
+AddCArtUseCase injectAddCArtUseCase(){
+  return AddCArtUseCase(homeTabRepository: injectHomeTabRepository());
+}
+HomeRepository injectHomeTabRepository(){
    return HomeTabRepositoryImpl(homeTabRemoteDatasource: injectHomeTabRemoteDatasource());
 }
   HomeTabRemoteDatasource injectHomeTabRemoteDatasource(){

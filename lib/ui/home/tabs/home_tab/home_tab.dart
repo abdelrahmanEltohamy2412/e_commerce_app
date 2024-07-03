@@ -55,7 +55,6 @@ class HomeTab extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                       ):
-
                   CategoriesOrBrandsSection(categoryList: viewModel.categoriesList,),
                   SizedBox(
                     height: 24.h,

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/domain/entities/AddCartResponseEntity.dart';
 import 'package:e_commerce_app/domain/entities/ProducResponseEntity.dart';
 
 import '../../../../../domain/entities/failures.dart';
@@ -17,4 +18,16 @@ class ProductListTabErrorState extends ProductListTabState {
 class ProductListTabSuccessState extends ProductListTabState{
   ProductResponseEntity productResponseEntity;
   ProductListTabSuccessState({required this.productResponseEntity});
+}
+class AddToCardLoadingState extends ProductListTabState{
+  String loadingMessage;
+  AddToCardLoadingState({required this.loadingMessage});
+}
+class AddToCardErrorState extends ProductListTabState {
+  Failures ? errors;
+  AddToCardErrorState({required this.errors});
+}
+class AddToCardSuccessState extends ProductListTabState{
+  AddCartResponseEntity addCartResponseEntity;
+  AddToCardSuccessState({required this.addCartResponseEntity});
 }

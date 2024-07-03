@@ -6,7 +6,7 @@ import '../entities/CategoryOrBrandResponseEntity.dart';
 import '../entities/failures.dart';
 
 class GetAllCategoriesUseCase{
-HomeTabRepository homeTabRepository;
+HomeRepository homeTabRepository;
 GetAllCategoriesUseCase({required this.homeTabRepository});
 
 Future<Either<Failures, CategoryOrBrandResponseEntity>>  invoke(){

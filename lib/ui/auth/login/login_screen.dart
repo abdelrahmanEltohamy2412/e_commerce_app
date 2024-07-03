@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/my_colors.dart';
+import '../../utils/shared_preference_utils.dart';
 import '../../utils/text_field_item.dart';
 import '../register/register_screen.dart';
 
@@ -34,6 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
           }else if (state is LoginSuccessState){
             DialogUtils.hideLoading(context);
             DialogUtils.showMessage(context, state.authResultEntity.userEntity?.name??'', title: 'Successes');
+            SharedPreferenceUtils.saveData(key: 'Token', value: state.authResultEntity.token);
+            Navigator.pushReplacementNamed(context, HomeScreenView.routeName);
+            
           }
         },
       bloc: viewModel,

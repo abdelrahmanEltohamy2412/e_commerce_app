@@ -1,5 +1,7 @@
 import 'package:e_commerce_app/domain/entities/ProducResponseEntity.dart';
+import 'package:e_commerce_app/ui/home/tabs/product_list_tab/cubit/product_list_tab_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../utils/my_assets.dart';
@@ -13,6 +15,7 @@ class GridViewCardItem extends StatelessWidget {
   //todo: product
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: 191.w,
       height: 237.h,
@@ -123,6 +126,7 @@ class GridViewCardItem extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     //todo: add to cart
+                    ProductListTabViewModel.get(context).addToCard(productEntity.id??'');
                   },
                   splashColor: Colors.transparent,
                   child: Icon(

@@ -26,4 +26,8 @@ class SharedPreferenceUtils {
       return sharedPreferences.setBool(key, value);
     }
   }
+
+
+
+
 }

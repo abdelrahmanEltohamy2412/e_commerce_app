@@ -8,6 +8,7 @@ import 'package:e_commerce_app/data/model/request/LoginRequest.dart';
 import 'package:e_commerce_app/data/model/request/RegisterRequest.dart';
 import 'package:e_commerce_app/data/model/response/CategoryOrBrandResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/LoginResponseDto.dart';
+import 'package:e_commerce_app/data/model/response/ProductResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/RegisterResponseDto.dart';
 import 'package:e_commerce_app/domain/entities/failures.dart';
 import 'package:http/http.dart' as http;
@@ -112,6 +113,27 @@ Future <Either<Failures,CategoryOrBrandResponseDto>>getCategories
       errorMessage:
 
       brandsResponse.message
+      ,
+    ));
+  }
+
+
+}
+
+Future <Either<Failures,ProductResponseDto>>getProducts
+    ( )async{
+
+  Uri url =Uri.https(ApiConstant.baseUrl,ApiEndPoint.productEndPoint);
+
+  var response=await http.get(url);
+  var productResponse=ProductResponseDto.fromJson(jsonDecode(response.body));
+  if (response.statusCode>=200&& response.statusCode<300){
+    return Right(productResponse);
+  }else {
+    return Left(ServerError(
+      errorMessage:
+
+      productResponse.message
       ,
     ));
   }

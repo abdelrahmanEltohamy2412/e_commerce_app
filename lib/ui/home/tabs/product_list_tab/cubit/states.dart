@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/domain/entities/ProducResponseEntity.dart';
+
 import '../../../../../domain/entities/failures.dart';
 
 abstract class ProductListTabState{}
@@ -13,6 +15,6 @@ class ProductListTabErrorState extends ProductListTabState {
   ProductListTabErrorState({required this.errors});
 }
 class ProductListTabSuccessState extends ProductListTabState{
-
-
+  ProductResponseEntity productResponseEntity;
+  ProductListTabSuccessState({required this.productResponseEntity});
 }

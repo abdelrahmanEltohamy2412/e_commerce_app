@@ -64,8 +64,10 @@ class HomeTab extends StatelessWidget {
                   SizedBox(
                     height: 24.h,
                   ),
-
-                  CategoriesOrBrandsSection(categoryList: viewModel.categoriesList,),
+                  state is BrandLoadingState?const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,),)
+                  :
+                  CategoriesOrBrandsSection(categoryList: viewModel.brandsList,),
+                  Padding(padding: EdgeInsets.only(bottom: 6.h))
                 ],
               ),
             ),

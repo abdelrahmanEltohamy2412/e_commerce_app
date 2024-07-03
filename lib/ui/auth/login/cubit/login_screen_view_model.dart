@@ -8,8 +8,8 @@ class LoginScreenViewModel extends Cubit<LoginStates>{
   LoginUseCase loginUseCase;
 
   var formKey = GlobalKey<FormState>();
-  var passwordController = TextEditingController();
-  var emailController = TextEditingController();
+  var passwordController = TextEditingController(text:'1752412' );
+  var emailController = TextEditingController(text: 'reem@routa.com');
   bool isObscure = true;
  void login()async{
    emit(LoginLoadingState());

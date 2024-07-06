@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/domain/di.dart';
+import 'package:e_commerce_app/ui/home/cart/cart_screen.dart';
 import 'package:e_commerce_app/ui/home/tabs/product_list_tab/cubit/states.dart';
 import 'package:e_commerce_app/ui/home/tabs/product_list_tab/widgets/grid_view_card_item.dart';
 import 'package:flutter/material.dart';
@@ -46,10 +47,17 @@ class ProductListTab extends StatelessWidget {
                       SizedBox(
                         width: 24.w,
                       ),
-                      ImageIcon(
-                        AssetImage(MyAssets.shoppingCart),
-                        size: 28.sp,
-                        color: AppColors.primaryColor,
+                      InkWell(onTap: (){
+                        Navigator.of(context).pushNamed(CartScreen.routeName);
+                      },
+                        child: Badge(
+                          label: Text(viewModel.numOfCartItem.toString()),
+                          child: ImageIcon(
+                            AssetImage(MyAssets.shoppingCart),
+                            size: 28.sp,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
                       ),
                     ]),
                     SizedBox(

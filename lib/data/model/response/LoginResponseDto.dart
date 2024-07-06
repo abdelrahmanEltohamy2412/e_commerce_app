@@ -12,9 +12,10 @@ class LoginResponseDto {
 
   LoginResponseDto.fromJson(dynamic json) {
     message = json['message'];
+    statusMsg = json['statusMsg'];
     user = json['user'] != null ? UserDto.fromJson(json['user']) : null;
     token = json['token'];
-    statusMsg = json['statusMsg'];
+
   }
 
   UserDto? user;

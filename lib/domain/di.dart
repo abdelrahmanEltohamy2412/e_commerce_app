@@ -1,13 +1,18 @@
 import 'package:e_commerce_app/data/api/ApiManger.dart';
 import 'package:e_commerce_app/data/repository/data_source/auth_remote_data_source_imp.dart';
+import 'package:e_commerce_app/data/repository/data_source/cart_remote_data_source_impl.dart';
 import 'package:e_commerce_app/data/repository/data_source/home_tab_remote_data_source_impl.dart';
 import 'package:e_commerce_app/data/repository/repository/auth_repo_imp.dart';
+import 'package:e_commerce_app/data/repository/repository/cart_repo_impl.dart';
 import 'package:e_commerce_app/data/repository/repository/home_tab_repository_impl.dart';
 import 'package:e_commerce_app/domain/repository/data_source/auth_remote_data_source.dart';
+import 'package:e_commerce_app/domain/repository/data_source/cart_remote_data_source.dart';
 import 'package:e_commerce_app/domain/repository/data_source/home_tab_remote_dataSource.dart';
 import 'package:e_commerce_app/domain/repository/repository/auth_repo.dart';
+import 'package:e_commerce_app/domain/repository/repository/cart_repository.dart';
 import 'package:e_commerce_app/domain/repository/repository/home_tab_repository.dart';
 import 'package:e_commerce_app/domain/use_case/Add_cart_use_use_Case.dart';
+import 'package:e_commerce_app/domain/use_case/gat_cart_use_case.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_Brands_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_categories_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_product_use_case.dart';
@@ -44,6 +49,15 @@ AuthRepository  injectAuthRepository(){
 
 AuthRemoteDataSource injectAuthRemoteDataSource(){
    return AuthRemoteDataSourceImp(apiManger: ApiManger.getApiManger());
+}
+GatCartUseCase injectGatCartUseCase(){
+  return GatCartUseCase(cartRepository: injectCartRepository());
+}
+CartRepository injectCartRepository(){
+  return CartRepoImpl(cartRemoteDataSource:injectCartRemoteDataSource ());
+}
+CartRemoteDataSource injectCartRemoteDataSource(){
+  return CartRemoteDataSourceImpl(apiManger: ApiManger.getApiManger());
 }
 
 injectApiManger(){

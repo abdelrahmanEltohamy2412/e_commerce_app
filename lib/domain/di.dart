@@ -12,12 +12,14 @@ import 'package:e_commerce_app/domain/repository/repository/auth_repo.dart';
 import 'package:e_commerce_app/domain/repository/repository/cart_repository.dart';
 import 'package:e_commerce_app/domain/repository/repository/home_tab_repository.dart';
 import 'package:e_commerce_app/domain/use_case/Add_cart_use_use_Case.dart';
+import 'package:e_commerce_app/domain/use_case/Delete_cart_use_case.dart';
 import 'package:e_commerce_app/domain/use_case/gat_cart_use_case.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_Brands_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_categories_useCase.dart';
 import 'package:e_commerce_app/domain/use_case/get_all_product_use_case.dart';
 import 'package:e_commerce_app/domain/use_case/login_use_case.dart';
 import 'package:e_commerce_app/domain/use_case/register_use_case.dart';
+import 'package:e_commerce_app/domain/use_case/update_cart_use_case.dart';
 
 injectRegisterUseCase(){
   return RegisterUseCase(authRepository: injectAuthRepository());
@@ -55,6 +57,12 @@ GatCartUseCase injectGatCartUseCase(){
 }
 CartRepository injectCartRepository(){
   return CartRepoImpl(cartRemoteDataSource:injectCartRemoteDataSource ());
+}
+DeleteCartUseCase injectDeleteCartUseCase(){
+  return DeleteCartUseCase(cartRepository: injectCartRepository());
+}
+UpdateCartUseCase injectUpdateCartUseCase(){
+  return UpdateCartUseCase(cartRepository: injectCartRepository());
 }
 CartRemoteDataSource injectCartRemoteDataSource(){
   return CartRemoteDataSourceImpl(apiManger: ApiManger.getApiManger());

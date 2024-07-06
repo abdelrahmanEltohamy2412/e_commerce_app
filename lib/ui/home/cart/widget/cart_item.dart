@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/domain/entities/GetCardRsponseEntity.dart';
+import 'package:e_commerce_app/ui/home/cart/cubit/cart_screen_view_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,6 +55,7 @@ class CartItem extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             //todo: delete item in cart
+                            CartScreenViewModel.get(context).deleteItemInCart(cartEntity.product!.id??'');
                           },
                           child: const Icon(
                             Icons.delete_outline,
@@ -102,6 +104,9 @@ class CartItem extends StatelessWidget {
                                   padding: EdgeInsets.zero,
                                   onPressed: () {
                                     //todo: decrement count
+                                    int counter = cartEntity.count!.toInt();
+                                    counter--;
+                                    CartScreenViewModel.get(context).updateItemInCart(counter,cartEntity.product!.id??'');
                                   },
                                   icon: Icon(
                                     Icons.remove_circle_outline_rounded,
@@ -120,6 +125,9 @@ class CartItem extends StatelessWidget {
                                   padding: EdgeInsets.zero,
                                   onPressed: () {
                                     //todo: increment count
+                                    int counter = cartEntity.count!.toInt();
+                                    counter++;
+                                    CartScreenViewModel.get(context).updateItemInCart(counter,cartEntity.product!.id??'');
                                   },
                                   icon: Icon(
                                     Icons.add_circle_outline_rounded,

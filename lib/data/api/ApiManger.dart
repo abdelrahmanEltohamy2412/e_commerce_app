@@ -204,6 +204,69 @@ Future <Either<Failures,GetCartResponseDto>>getCart()async {
 }
 
 
+Future <Either<Failures,GetCartResponseDto>>deleteItemInCart(String productId)async {
+  Uri url =Uri.https(ApiConstant.baseUrl,'${ApiEndPoint.addToCartEndPoint}/$productId');
+  var token =SharedPreferenceUtils.getData(key: 'Token');
+  var response=await http.delete(url,
+
+    headers: {
+    'token' :token!.toString()
+    }
+  );
+  var deleteCartResponse=GetCartResponseDto.fromJson(jsonDecode(response.body));
+  if (response.statusCode>=200&& response.statusCode<300){
+    return Right(deleteCartResponse);
+  }else if(response.statusCode==401){
+    return Left(ServerError(errorMessage: deleteCartResponse.message));
+  }
+  else
+  {
+    return Left(ServerError(
+      errorMessage:
+
+      deleteCartResponse.message
+      ,
+    )
+    );
+  }
+
+
+}
+
+
+
+Future <Either<Failures,GetCartResponseDto>>updateItemInCart(int count,String productId)async {
+  Uri url =Uri.https(ApiConstant.baseUrl,'${ApiEndPoint.addToCartEndPoint}/$productId');
+  var token =SharedPreferenceUtils.getData(key: 'Token');
+  var response=await http.put(url,
+   body: {
+    'count':count.toString()
+   },
+    headers: {
+    'token' :token!.toString()
+    }
+  );
+  var updateCartResponse=GetCartResponseDto.fromJson(jsonDecode(response.body));
+  if (response.statusCode>=200&& response.statusCode<300){
+    return Right(updateCartResponse);
+  }else if(response.statusCode==401){
+    return Left(ServerError(errorMessage: updateCartResponse.message));
+  }
+  else
+  {
+    return Left(ServerError(
+      errorMessage:
+
+      updateCartResponse.message
+      ,
+    )
+    );
+  }
+
+
+}
+
+
 
 
   }

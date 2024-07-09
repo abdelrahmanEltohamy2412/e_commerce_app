@@ -1,9 +1,7 @@
 import 'package:e_commerce_app/ui/auth/login/login_screen.dart';
 import 'package:e_commerce_app/ui/utils/shared_preference_utils.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../utils/custome_text_field_item.dart';
 import '../../../utils/my_assets.dart';
 import '../../../utils/my_colors.dart';
@@ -19,6 +17,7 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

@@ -7,11 +7,11 @@ class RegisterScreenViewModel extends Cubit<RegisterStates>{
     RegisterScreenViewModel({required this.registerUseCase}) : super(RegisterInitialState());
     /// toDo: handle logic - hold data
     var formKey = GlobalKey<FormState>();
-    var nameController = TextEditingController(text: 'abdelrahman');
-    var passwordController = TextEditingController(text: '123456');
-    var confirmationPasswordController = TextEditingController(text: '123456');
-    var emailController = TextEditingController(text: 'abd@routa.com');
-    var phoneController = TextEditingController(text: '01229412004');
+    var nameController = TextEditingController();
+    var passwordController = TextEditingController();
+    var confirmationPasswordController = TextEditingController();
+    var emailController = TextEditingController();
+    var phoneController = TextEditingController();
     bool isObscure = true;
 
     RegisterUseCase registerUseCase;
